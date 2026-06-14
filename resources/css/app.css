@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
+    --color-navy-900: #0B1426;
+    --color-navy-800: #122040;
+    --color-navy-700: #1A3060;
+    --color-gold-500: #C4963A;
+    --color-gold-400: #D4A94E;
+    --color-gold-300: #E8C97A;
+    --color-cream-50: #FAFAF5;
+    --color-cream-100: #F0EDE4;
+}
+
+/* ── Scroll-Reveal Animations ─────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Marquee / Trust Bar ────────────────────────────── */
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.marquee-track {
+    animation: marquee 25s linear infinite;
+}
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* ── Pulse for WhatsApp button ─────────────────────── */
+@keyframes pulse-ring {
+    0%   { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+.whatsapp-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: #25D366;
+    animation: pulse-ring 2s ease-out infinite;
+    z-index: -1;
+}
+
+/* ── Bounce for scroll indicator ───────────────────── */
+@keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(10px); }
+}
+.bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* ── Counter number style ──────────────────────────── */
+.counter-value {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Product modal ─────────────────────────────────── */
+.modal-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-overlay .modal-content {
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* ── Lightbox ──────────────────────────────────────── */
+.lightbox-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── Timeline connector animation ──────────────────── */
+.timeline-step .timeline-line {
+    width: 0;
+    transition: width 1s ease;
+}
+.timeline-step.revealed .timeline-line {
+    width: 100%;
+}
+
+/* ── Glassmorphism card ────────────────────────────── */
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ── Custom scrollbar ──────────────────────────────── */
+html, body {
+    scroll-behavior: smooth;
+    overflow-x: hidden !important;
+    width: 100%;
+    position: relative;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0B1426;
+}
+::-webkit-scrollbar-thumb {
+    background: #C4963A;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #D4A94E;
+}
+
+/* ── Utilities ─────────────────────────────────────── */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
